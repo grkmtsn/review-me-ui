@@ -29,7 +29,9 @@
     "babel-loader": "^8.2.2",
     "rollup": "^2.45.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
-    "rollup-plugin-typescript2": "^0.30.0"
+    "rollup-plugin-typescript2": "^0.30.0",
+    "ts-loader": "^8.1.0",
+    "typescript": "^4.2.4"
   },
   "dependencies": {}
 }
