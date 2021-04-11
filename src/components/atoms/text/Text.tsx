@@ -3,7 +3,7 @@ import { StyledText } from './styles';
 
 export interface TextProps {
   level?: 1 | 2;
-  color?: 'primary' | 'black' | 'success' | 'warning' | 'error';
+  color?: 'primary' | 'white' | 'black' | 'success' | 'warning' | 'error';
   children: React.ReactNode;
 }
 

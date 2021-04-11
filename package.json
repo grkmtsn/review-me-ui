@@ -5,6 +5,7 @@
   "main": "./build/index.js",
   "module": "./build/index.es.js",
   "scripts": {
+    "build": "rollup -c",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },

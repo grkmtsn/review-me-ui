@@ -3,7 +3,7 @@ import { StyledSmall } from './styles';
 
 export interface SmallProps {
   level?: 1 | 2 | 3;
-  color?: 'primary' | 'black' | 'success' | 'warning' | 'error';
+  color?: 'primary' | 'white' | 'black' | 'success' | 'warning' | 'error';
   children: React.ReactNode;
 }
 

@@ -4,7 +4,7 @@ import { setLevel } from './level';
 
 type SmallProps = {
   level?: 1 | 2 | 3;
-  color?: 'primary' | 'black' | 'success' | 'warning' | 'error';
+  color?: 'primary' | 'white' | 'black' | 'success' | 'warning' | 'error';
 };
 
 export const StyledSmall = styled.p<SmallProps>`

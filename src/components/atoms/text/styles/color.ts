@@ -8,6 +8,10 @@ const black = css`
   color: ${(props) => props.theme.colors.black100};
 `;
 
+const white = css`
+  color: ${(props) => props.theme.colors.white};
+`;
+
 const warning = css`
   color: ${(props) => props.theme.colors.warning};
 `;
@@ -23,6 +27,7 @@ const error = css`
 const color = {
   primary,
   black,
+  white,
   warning,
   success,
   error,

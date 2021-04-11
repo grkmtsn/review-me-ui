@@ -3,10 +3,12 @@ import { h1, h2, h3, h4, h5, h6 } from './variant';
 
 type HeadingProps = {
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+  invert?: boolean;
 };
 
 export const StyledHeading = styled.h1<HeadingProps>`
-  color: ${(props) => props.theme.colors.black100};
+  color: ${(props) =>
+    props.invert ? props.theme.colors.white : props.theme.colors.black100};
   font-style: normal;
   margin: 0;
 
