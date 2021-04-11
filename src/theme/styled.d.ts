@@ -3,24 +3,30 @@ import 'styled-components';
 declare module 'styled-components' {
   export interface DefaultTheme {
     colors: {
-      primary: string;
-      secondary: string;
-      info: string;
-      success: string;
+      primary100: string;
+      primary90: string;
+      primary80: string;
+      primary70: string;
+      primary60: string;
+      primary50: string;
+      primary40: string;
+      primary30: string;
+      primary20: string;
+      primary10: string;
+
       warning: string;
+      success: string;
       error: string;
 
-      black1: string;
-      black2: string;
-      black3: string;
+      black100: string;
+      black80: string;
+      black60: string;
+      black40: string;
+      black20: string;
+      black10: string;
+      black5: string;
 
       white: string;
-
-      gray1: string;
-      gray2: string;
-      gray3: string;
-      gray4: string;
-      gray5: string;
     };
     fontSizes: {
       h1: number;

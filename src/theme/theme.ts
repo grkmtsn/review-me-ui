@@ -2,24 +2,30 @@ import { DefaultTheme } from 'styled-components';
 
 export const theme: DefaultTheme = {
   colors: {
-    primary: '#092C4C',
-    secondary: '#F2994A',
-    info: '#2F80ED',
-    success: '#27AE60',
-    warning: '#E2B93B',
-    error: '#EB5757',
+    primary100: '#007EFF',
+    primary90: '#1A8BFF',
+    primary80: '#3398FF',
+    primary70: '#4DA5FF',
+    primary60: '#66B2FF',
+    primary50: '#80BFFF',
+    primary40: '#99CBFF',
+    primary30: '#B3D8FF',
+    primary20: '#CCE5FF',
+    primary10: '#E5F2FF',
 
-    black1: '#000000',
-    black2: '#1D1D1D',
-    black3: '#282828',
+    warning: '#F6A609',
+    success: '#2AC769',
+    error: '#FB4E4E',
+
+    black100: '#25282B',
+    black80: '#52575C',
+    black60: '#A0A4A8',
+    black40: '#CACCCF',
+    black20: '#DBDDE0',
+    black10: '#E8E8E8',
+    black5: '#F9F9FA',
 
     white: '#FFFFFF',
-
-    gray1: '#333333',
-    gray2: '#4F4F4F',
-    gray3: '#828282',
-    gray4: '#BDBDBD',
-    gray5: '#E0E0E0',
   },
   fontSizes: {
     h1: 5.6,
