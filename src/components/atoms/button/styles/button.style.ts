@@ -15,10 +15,6 @@ type ButtonProps = {
   loading: boolean;
 };
 
-type LoaderProps = {
-  shape: 'rectangle' | 'circular';
-};
-
 const rotate = keyframes`
   from {
     transform: rotate(0deg);
@@ -55,14 +51,24 @@ export const StyledButton = styled.button<ButtonProps>`
   ${(props) => setColor(props.color, props.variant)}
 
   > span {
-    ${props => props.loading && css`
-      opacity: 0;
-    `}
+    ${(props) =>
+      props.loading &&
+      css`
+        opacity: 0;
+      `};
   }
 `;
 
-export const StyledButtonLoader = styled(Loader)<LoaderProps>`
+export const StyledButtonLoader = styled(Loader)`
   animation: ${rotate} 2s linear infinite;
   position: absolute;
   margin-inline-end: 0px;
+`;
+
+export const LeftIcon = styled.span`
+  margin-inline-end: ${(props) => props.theme.spacing.small}rem;
+`;
+
+export const RightIcon = styled.span`
+  margin-inline-start: ${(props) => props.theme.spacing.small}rem;
 `;

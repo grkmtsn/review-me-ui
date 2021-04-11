@@ -62,3 +62,9 @@ Circular.args = {
   shape: 'circular',
   children: <Download size={20} />,
 };
+
+export const WithIcon = Template.bind({});
+WithIcon.args = {
+  leftIcon: <Download size={20} />,
+  children: 'Download',
+};

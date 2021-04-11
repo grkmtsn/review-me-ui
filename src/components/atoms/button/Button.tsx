@@ -1,7 +1,11 @@
 import React from 'react';
-import { Loader } from '@styled-icons/feather';
 
-import { StyledButton, StyledButtonLoader } from './styles';
+import {
+  StyledButton,
+  StyledButtonLoader,
+  LeftIcon,
+  RightIcon,
+} from './styles';
 
 export interface ButtonProps {
   color?: 'primary' | 'warning' | 'success' | 'error';
@@ -11,6 +15,8 @@ export interface ButtonProps {
   type?: 'button' | 'submit' | 'reset';
   disabled: boolean;
   loading: boolean;
+  leftIcon?: React.ReactElement;
+  rightIcon?: React.ReactElement;
   children: React.ReactNode;
 }
 
@@ -22,6 +28,8 @@ const Button = ({
   fluid = false,
   disabled = false,
   loading = false,
+  leftIcon = null,
+  rightIcon = null,
   children,
   ...rest
 }: ButtonProps): JSX.Element => {
@@ -37,8 +45,10 @@ const Button = ({
         loading={loading}
         {...rest}
       >
-        {loading && <StyledButtonLoader size={20} shape={shape} />}
+        {leftIcon && shape !== 'circular' && <LeftIcon>{leftIcon}</LeftIcon>}
+        {loading && <StyledButtonLoader size={20} />}
         <span>{children}</span>
+        {rightIcon && shape !== 'circular' && <RightIcon>{rightIcon}</RightIcon>}
       </StyledButton>
     </div>
   );
