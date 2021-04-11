@@ -1,6 +1,6 @@
 import React from 'react';
+import { Download } from '@styled-icons/feather';
 import { Story, Meta } from '@storybook/react';
-
 import Button, { ButtonProps } from './Button';
 
 export default {
@@ -51,7 +51,14 @@ export default {
 
 const Template: Story<ButtonProps> = (args) => <Button {...args} />;
 
-export const Default = Template.bind({});
-Default.args = {
-  children: 'Click Me!',
+export const Rectangle = Template.bind({});
+Rectangle.args = {
+  shape: 'rectangle',
+  children: 'Submit',
+};
+
+export const Circular = Template.bind({});
+Circular.args = {
+  shape: 'circular',
+  children: <Download size={20} />,
 };

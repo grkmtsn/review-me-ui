@@ -1,5 +1,7 @@
 import React from 'react';
-import { StyledButton } from './styles';
+import { Loader } from '@styled-icons/feather';
+
+import { StyledButton, StyledButtonLoader } from './styles';
 
 export interface ButtonProps {
   color?: 'primary' | 'warning' | 'success' | 'error';
@@ -8,6 +10,7 @@ export interface ButtonProps {
   fluid?: boolean;
   type?: 'button' | 'submit' | 'reset';
   disabled: boolean;
+  loading: boolean;
   children: React.ReactNode;
 }
 
@@ -18,21 +21,32 @@ const Button = ({
   type = 'button',
   fluid = false,
   disabled = false,
+  loading = false,
   children,
   ...rest
 }: ButtonProps): JSX.Element => {
   return (
-    <StyledButton
-      color={color}
-      variant={variant}
-      shape={shape}
-      type={type}
-      fluid={fluid}
-      disabled={disabled}
-      {...rest}
-    >
-      {children}
-    </StyledButton>
+    <div>
+      <StyledButton
+        color={color}
+        variant={variant}
+        shape={shape}
+        type={type}
+        fluid={fluid}
+        disabled={disabled}
+        loading={loading}
+        {...rest}
+      >
+        {loading ? (
+          <>
+            <StyledButtonLoader size={20} shape={shape} />
+            {shape === 'rectangle' ? <span>Loading</span> : null}
+          </>
+        ) : (
+          children
+        )}
+      </StyledButton>
+    </div>
   );
 };
 

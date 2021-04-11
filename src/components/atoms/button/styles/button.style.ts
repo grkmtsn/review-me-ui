@@ -1,4 +1,6 @@
-import styled from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
+import { Loader } from '@styled-icons/feather';
+
 import setColor from './color';
 import shape from './shape';
 import variant from './variant';
@@ -10,7 +12,22 @@ type ButtonProps = {
   fluid: boolean;
   type: 'button' | 'submit' | 'reset';
   disabled: boolean;
+  loading: boolean;
 };
+
+type LoaderProps = {
+  shape: 'rectangle' | 'circular';
+};
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+`;
 
 export const StyledButton = styled.button<ButtonProps>`
   position: relative;
@@ -19,6 +36,7 @@ export const StyledButton = styled.button<ButtonProps>`
   align-items: center;
   user-select: none;
   cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
+  pointer-events: ${(props) => (props.loading ? 'none' : 'all')};
   overflow: hidden;
   appearance: none;
   outline: none;
@@ -35,4 +53,10 @@ export const StyledButton = styled.button<ButtonProps>`
   ${(props) => variant[props.variant]}
 
   ${(props) => setColor(props.color, props.variant)}
+`;
+
+export const StyledButtonLoader = styled(Loader)<LoaderProps>`
+  margin-right: ${(props) =>
+    props.shape === 'rectangle' ? props.theme.spacing.small : 0}rem;
+  animation: ${rotate} 2s linear infinite;
 `;

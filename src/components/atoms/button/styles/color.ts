@@ -47,6 +47,12 @@ const setColor = (color: string, variant: string): any => {
           background-color: rgba(${hexToRgb(theme.colors[color], 1)});
           box-shadow: 0px 4px 12px rgba(${hexToRgb(theme.colors[color], 0.2)});
         }
+
+        &:disabled {
+          color: ${theme.colors.white};
+          background-color: rgba(${hexToRgb(theme.colors[color], 1)});
+          box-shadow: none !important;
+        }
       `;
     default:
   }
