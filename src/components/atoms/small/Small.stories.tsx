@@ -17,6 +17,19 @@ export default {
       },
       options: [1, 2, 3],
     },
+    color: {
+      control: {
+        type: 'select',
+        labels: {
+          primary: 'primary',
+          black: 'black',
+          success: 'success',
+          warning: 'warning',
+          error: 'error',
+        },
+      },
+      options: ['primary', 'black', 'success', 'warning', 'error'],
+    },
   },
 } as Meta;
 
@@ -25,5 +38,6 @@ const Template: Story<SmallProps> = (args) => <Small {...args} />;
 export const Default = Template.bind({});
 Default.args = {
   level: 1,
+  color: 'black',
   children: 'Lorem Ipsum Dolor',
 };
