@@ -53,10 +53,16 @@ export const StyledButton = styled.button<ButtonProps>`
   ${(props) => variant[props.variant]}
 
   ${(props) => setColor(props.color, props.variant)}
+
+  > span {
+    ${props => props.loading && css`
+      opacity: 0;
+    `}
+  }
 `;
 
 export const StyledButtonLoader = styled(Loader)<LoaderProps>`
-  margin-right: ${(props) =>
-    props.shape === 'rectangle' ? props.theme.spacing.small : 0}rem;
   animation: ${rotate} 2s linear infinite;
+  position: absolute;
+  margin-inline-end: 0px;
 `;

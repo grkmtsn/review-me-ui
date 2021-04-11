@@ -37,14 +37,8 @@ const Button = ({
         loading={loading}
         {...rest}
       >
-        {loading ? (
-          <>
-            <StyledButtonLoader size={20} shape={shape} />
-            {shape === 'rectangle' ? <span>Loading</span> : null}
-          </>
-        ) : (
-          children
-        )}
+        {loading && <StyledButtonLoader size={20} shape={shape} />}
+        <span>{children}</span>
       </StyledButton>
     </div>
   );
