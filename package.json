@@ -40,5 +40,11 @@
     "ts-loader": "^8.1.0",
     "typescript": "^4.2.4"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "peerDependencies": {
+    "polished": "4.1.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "styled-components": "5.2.3"
+  }
 }
