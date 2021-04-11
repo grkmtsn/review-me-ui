@@ -23,13 +23,12 @@ export default {
         type: 'select',
         labels: {
           primary: 'primary',
-          secondary: 'secondary',
           warning: 'warning',
-          positive: 'positive',
-          negative: 'negative',
+          success: 'success',
+          error: 'error',
         },
       },
-      options: ['primary', 'secondary', 'warning', 'positive', 'negative'],
+      options: ['primary', 'warning', 'success', 'error'],
     },
     shape: {
       control: {

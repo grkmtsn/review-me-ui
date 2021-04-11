@@ -3,17 +3,7 @@ import 'styled-components';
 declare module 'styled-components' {
   export interface DefaultTheme {
     colors: {
-      primary100: string;
-      primary90: string;
-      primary80: string;
-      primary70: string;
-      primary60: string;
-      primary50: string;
-      primary40: string;
-      primary30: string;
-      primary20: string;
-      primary10: string;
-
+      primary: string;
       warning: string;
       success: string;
       error: string;

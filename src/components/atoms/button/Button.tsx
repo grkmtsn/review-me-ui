@@ -2,7 +2,7 @@ import React from 'react';
 import { StyledButton } from './styles';
 
 export interface ButtonProps {
-  color?: 'primary' | 'secondary' | 'warning' | 'positive' | 'negative';
+  color?: 'primary' | 'warning' | 'success' | 'error';
   variant?: 'text' | 'outlined' | 'contained';
   shape?: 'rectangle' | 'circular';
   fluid?: boolean;

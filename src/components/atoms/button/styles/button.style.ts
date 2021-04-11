@@ -1,7 +1,10 @@
 import styled from 'styled-components';
+import setColor from './color';
+import shape from './shape';
+import variant from './variant';
 
 type ButtonProps = {
-  color: 'primary' | 'secondary' | 'warning' | 'positive' | 'negative';
+  color: 'primary' | 'warning' | 'success' | 'error';
   variant: 'text' | 'outlined' | 'contained';
   shape: 'rectangle' | 'circular';
   fluid: boolean;
@@ -18,8 +21,18 @@ export const StyledButton = styled.button<ButtonProps>`
   cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
   overflow: hidden;
   appearance: none;
+  outline: none;
   white-space: nowrap;
   width: ${(props) => (props.fluid ? '100%' : 'auto')};
-  padding: 0 ${(props) => props.theme.spacing.large}rem;
-  height: 4.8rem;
+  transition: all 0.3s ease;
+  font-size: 1.4rem;
+  font-weight: 600;
+  font-style: normal;
+  line-height: 1.8rem;
+  letter-spacing: 0.2px;
+
+  ${(props) => shape[props.shape]}
+  ${(props) => variant[props.variant]}
+
+  ${(props) => setColor(props.color, props.variant)}
 `;
