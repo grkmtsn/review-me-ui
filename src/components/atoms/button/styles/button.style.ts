@@ -12,7 +12,7 @@ type ButtonProps = {
   fluid: boolean;
   type: 'button' | 'submit' | 'reset';
   disabled: boolean;
-  loading: boolean;
+  loading: number;
 };
 
 const rotate = keyframes`

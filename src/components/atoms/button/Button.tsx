@@ -42,13 +42,15 @@ const Button = ({
         type={type}
         fluid={fluid}
         disabled={disabled}
-        loading={loading}
+        loading={loading ? 1 : 0}
         {...rest}
       >
         {leftIcon && shape !== 'circular' && <LeftIcon>{leftIcon}</LeftIcon>}
         {loading && <StyledButtonLoader size={20} />}
         <span>{children}</span>
-        {rightIcon && shape !== 'circular' && <RightIcon>{rightIcon}</RightIcon>}
+        {rightIcon && shape !== 'circular' && (
+          <RightIcon>{rightIcon}</RightIcon>
+        )}
       </StyledButton>
     </div>
   );
