@@ -4,3 +4,4 @@ export { default as Heading } from './components/atoms/heading';
 export { default as Small } from './components/atoms/small';
 export { default as SubTitle } from './components/atoms/subtitle';
 export { default as Text } from './components/atoms/text';
+export { default as Space } from './components/atoms/space';
