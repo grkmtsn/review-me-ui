@@ -5,7 +5,7 @@ const {
   story,
   style,
   exportStyle,
-} = require('./templates/atom');
+} = require('./templates/component');
 
 const yargs = require('yargs');
 const prompts = require('prompts');
