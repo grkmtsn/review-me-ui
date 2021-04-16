@@ -1,1 +1,1 @@
-export * from './col.style';
+export * from './Col.style';

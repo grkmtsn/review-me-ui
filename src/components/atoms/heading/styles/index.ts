@@ -1,1 +1,1 @@
-export * from './heading.style';
+export * from './Heading.style';

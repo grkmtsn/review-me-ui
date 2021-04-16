@@ -10,6 +10,8 @@ const {
 
 const [name] = process.argv.slice(2);
 
+console.log(process.argv.slice(2));
+
 if (!name) throw new Error('You must include a component name.');
 
 const dir = `./src/components/atoms/${name}/`;

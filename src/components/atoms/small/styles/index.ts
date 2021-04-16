@@ -1,1 +1,1 @@
-export * from './small.style';
+export * from './Small.style';

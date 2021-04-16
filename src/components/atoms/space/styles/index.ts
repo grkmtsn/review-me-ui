@@ -1,1 +1,1 @@
-export * from './space.style';
+export * from './Space.style';
