@@ -13,13 +13,13 @@ const ${name} = ({ children, ...rest }: ${name}Props): JSX.Element => (
 export default ${name};\n`;
 };
 
-exports.story = (name) => {
+exports.story = (name, type) => {
   return `import React from 'react';
 import { Story, Meta } from '@storybook/react';
 import ${name}, { ${name}Props } from './${name}';
       
 export default {
-  title: 'Atoms/${name}',
+  title: '${type}s/${name}',
   component: ${name},
 } as Meta;
       

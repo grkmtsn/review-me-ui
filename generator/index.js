@@ -1,5 +1,4 @@
 const fs = require('fs');
-
 const {
   component,
   exportComponent,
@@ -8,35 +7,58 @@ const {
   exportStyle,
 } = require('./templates/atom');
 
-const [name] = process.argv.slice(2);
+const yargs = require('yargs');
+const prompts = require('prompts');
+prompts.override(yargs.argv);
 
-console.log(process.argv.slice(2));
+(async () => {
+  const response = await prompts([
+    {
+      type: 'select',
+      name: 'type',
+      message: 'Pick your component type:',
+      choices: [
+        { title: 'Atom', value: 'Atom' },
+        { title: 'Molecule', value: 'Molecule' },
+        { title: 'Organism', value: 'Organism' },
+      ],
+      initial: 1,
+    },
+  ]);
 
-if (!name) throw new Error('You must include a component name.');
+  const [name] = process.argv.slice(2);
+  const type = response.type;
 
-const dir = `./src/components/atoms/${name}/`;
-const styleDir = `./src/components/atoms/${name}/styles`;
+  if (!name) throw new Error('You must include a component name.');
 
-if (fs.existsSync(dir))
-  throw new Error('A component with that name already exists.');
+  const dir = `./src/components/${type.toLowerCase()}s/${name}/`;
+  const styleDir = `./src/components/${type.toLowerCase()}s/${name}/styles`;
 
-fs.mkdirSync(dir);
-fs.mkdirSync(styleDir);
+  if (fs.existsSync(dir))
+    throw new Error('A component with that name already exists.');
 
-function writeFileErrorHandler(err) {
-  if (err) throw err;
-}
+  fs.mkdirSync(dir);
+  fs.mkdirSync(styleDir);
 
-fs.writeFile(`${dir}/${name}.tsx`, component(name), writeFileErrorHandler);
-fs.writeFile(`${dir}/${name}.stories.tsx`, story(name), writeFileErrorHandler);
-fs.writeFile(`${dir}/index.ts`, exportComponent(name), writeFileErrorHandler);
-fs.writeFile(
-  `${dir}/styles/${name}.style.ts`,
-  style(name),
-  writeFileErrorHandler,
-);
-fs.writeFile(
-  `${dir}/styles/index.ts`,
-  exportStyle(name),
-  writeFileErrorHandler,
-);
+  function writeFileErrorHandler(err) {
+    if (err) throw err;
+  }
+
+  fs.writeFile(`${dir}/${name}.tsx`, component(name), writeFileErrorHandler);
+  fs.writeFile(
+    `${dir}/${name}.stories.tsx`,
+    story(name, type),
+    writeFileErrorHandler,
+  );
+  fs.writeFile(`${dir}/index.ts`, exportComponent(name), writeFileErrorHandler);
+  fs.writeFile(
+    `${dir}/styles/${name}.style.ts`,
+    style(name),
+    writeFileErrorHandler,
+  );
+  fs.writeFile(
+    `${dir}/styles/index.ts`,
+    exportStyle(name),
+    writeFileErrorHandler,
+  );
+})();
