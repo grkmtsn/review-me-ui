@@ -1,8 +1,8 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
 import Col, { ColProps } from './Col';
-import Container from '../container';
-import Row from '../row';
+import Container from '../Container';
+import Row from '../Row';
 
 export default {
   title: 'Atoms/Col',
@@ -12,16 +12,13 @@ export default {
 const Template: Story<ColProps> = (args) => (
   <Container>
     <Row>
-      <Col xs={12} sm={6} md={3} lg={3} xl={3} debug>
+      <Col xs={12} sm={6} md={4} lg={2} xl={4} debug>
         xs-12
       </Col>
-      <Col xs={12} sm={6} md={3} lg={3} xl={3} debug>
+      <Col xs={12} sm={6} md={4} lg={8} xl={4} debug>
         xs-12
       </Col>
-      <Col xs={12} sm={6} md={3} lg={3} xl={3} debug>
-        xs-12
-      </Col>
-      <Col xs={12} sm={6} md={3} lg={3} xl={3} debug>
+      <Col xs={12} sm={6} md={4} lg={2} xl={4} debug>
         xs-12
       </Col>
     </Row>
