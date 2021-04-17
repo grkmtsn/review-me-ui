@@ -12,7 +12,7 @@ export interface SpaceProps {
     | number;
   align?: 'start' | 'end' | 'center' | 'baseline';
   direction?: 'horizontal' | 'vertical';
-  wrap?: boolean;
+  wrap: boolean;
   children: React.ReactNode;
 }
 
@@ -28,7 +28,7 @@ const Space = ({
     direction={direction}
     size={size}
     align={align}
-    wrap={wrap}
+    wrap={wrap ? 1 : 0}
     {...rest}
   >
     {children}

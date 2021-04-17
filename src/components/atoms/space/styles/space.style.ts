@@ -13,7 +13,7 @@ type SpaceProps = {
     | number;
   align?: 'start' | 'end' | 'center' | 'baseline';
   direction?: 'horizontal' | 'vertical';
-  wrap?: boolean;
+  wrap?: number;
 };
 
 export const StyledSpace = styled.div<SpaceProps>`
