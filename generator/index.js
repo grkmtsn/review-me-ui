@@ -12,7 +12,17 @@ const prompts = require('prompts');
 prompts.override(yargs.argv);
 
 (async () => {
+  const componentNameRegex = /^[A-Z][a-z]*$/;
   const response = await prompts([
+    {
+      type: 'text',
+      name: 'name',
+      message: 'What is your component name?',
+      validate: (value) =>
+        value.match(componentNameRegex) === null
+          ? `Sorry, First letter must be upper case and other letters must be lower case.`
+          : true,
+    },
     {
       type: 'select',
       name: 'type',
@@ -26,8 +36,8 @@ prompts.override(yargs.argv);
     },
   ]);
 
-  const [name] = process.argv.slice(2);
   const type = response.type;
+  const name = response.name;
 
   if (!name) throw new Error('You must include a component name.');
 
@@ -61,4 +71,30 @@ prompts.override(yargs.argv);
     exportStyle(name),
     writeFileErrorHandler,
   );
+
+  fs.readFile('./src/components/index.ts', 'utf8', function (err, data) {
+    if (err) throw err;
+
+    const currentComponents = data.match(/(?<=import )(.*?)(?= from)/g);
+    const newComponents = [name, ...currentComponents].sort();
+
+    const importStatements = newComponents
+      .map(
+        (importName) =>
+          `import ${importName} from './${type.toLowerCase()}s/${importName}';\n`,
+      )
+      .join('');
+
+    const exportStatements = `export {\n${newComponents
+      .map((component) => `  ${component},\n`)
+      .join('')}};\n`;
+
+    const fileContent = `${importStatements}\n${exportStatements}`;
+
+    fs.writeFile(
+      `./src/components/index.ts`,
+      fileContent,
+      writeFileErrorHandler,
+    );
+  });
 })();
