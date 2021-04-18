@@ -9,14 +9,7 @@ export default {
   component: Input,
 } as Meta;
 
-const Template: Story<InputProps> = (args) => {
-  return (
-    <div>
-      <Input {...args} />
-      <Input {...args} />
-    </div>
-  );
-};
+const Template: Story<InputProps> = (args) => <Input {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {};

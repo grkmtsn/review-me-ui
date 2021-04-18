@@ -61,9 +61,14 @@ export const StyledInput = styled.input<InputProps>`
   }
 `;
 
+export const Wrapper = styled.div`
+  position: relative;
+  width: 100%;
+`;
+
 export const InputWrapper = styled.div`
   position: relative;
-  margin-bottom: 3rem;
+  width: 100%;
 `;
 
 export const Message = styled(Small)`
@@ -74,6 +79,8 @@ export const Message = styled(Small)`
 `;
 
 export const Label = styled(Small)<LabelProps>`
+  width: 100%;
+  text-align: left;
   margin-bottom: 0.6rem;
   transition: color 0.3s ease;
   ${(props) => {

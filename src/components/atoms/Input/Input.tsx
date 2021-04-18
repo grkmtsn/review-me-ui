@@ -1,5 +1,7 @@
-import React, { useState, useRef } from 'react';
+import React, { forwardRef, useState, useRef } from 'react';
+import useCombinedRefs from '../../../hooks/useCombinedRefs';
 import {
+  Wrapper,
   StyledInput,
   InputWrapper,
   Message,
@@ -7,7 +9,6 @@ import {
   LeftIcon,
   ClearIcon,
 } from './styles';
-
 export interface InputProps {
   label?: string;
   required?: boolean;
@@ -16,76 +17,98 @@ export interface InputProps {
   allowClear?: boolean;
   disabled?: boolean;
   onChange?: (e: React.FormEvent<HTMLInputElement>) => void;
+  onFocus?: (e: React.FormEvent<HTMLInputElement>) => void;
+  onBlur?: (e: React.FormEvent<HTMLInputElement>) => void;
+  onClear?: () => void;
 }
 
-const Input = ({
-  label = null,
-  message = null,
-  leftIcon = null,
-  allowClear = false,
-  disabled = false,
-  onChange,
-  ...rest
-}: InputProps): JSX.Element => {
-  const [focused, setFocused] = useState(false);
-  const [touched, setTouched] = useState(false);
+export type Ref = HTMLInputElement;
 
-  const inputRef = useRef<HTMLInputElement>();
+const Input = forwardRef<Ref, InputProps>(
+  (
+    {
+      label = null,
+      message = null,
+      leftIcon = null,
+      allowClear = true,
+      disabled = false,
+      onChange,
+      onBlur,
+      onFocus,
+      onClear,
+      ...rest
+    },
+    ref,
+  ): JSX.Element => {
+    const innerRef = useRef<HTMLInputElement>(null);
+    const combinedRef = useCombinedRefs(ref, innerRef);
 
-  const handleFocus = (): void => {
-    setFocused(true);
-  };
+    const [focused, setFocused] = useState(false);
+    const [touched, setTouched] = useState(false);
 
-  const handleBlur = (): void => {
-    setFocused(false);
-  };
+    const handleFocus = (e: React.FormEvent<HTMLInputElement>): void => {
+      if (onFocus) onFocus(e);
+      setFocused(true);
+      if (combinedRef.current.value.length > 0) {
+        setTouched(true);
+      }
+    };
 
-  const handleClear = () => {
-    inputRef.current.value = '';
-    inputRef.current.focus();
-    setTouched(false);
-  };
+    const handleBlur = (e: React.FormEvent<HTMLInputElement>): void => {
+      if (onBlur) onBlur(e);
+      setFocused(false);
+    };
 
-  const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
-    if (onChange) onChange(e);
-    if (e.currentTarget.value.length > 0) {
-      setTouched(true);
-    } else {
+    const handleClear = () => {
+      if (onClear) onClear();
+      combinedRef.current.value = '';
+      combinedRef.current.focus();
       setTouched(false);
-    }
-  };
+    };
 
-  return (
-    <>
-      {label && (
-        <Label
-          disabled={disabled}
-          hasError={!!message && touched}
-          level={1}
-          focused={focused}
-        >
-          {label}
-        </Label>
-      )}
-      <InputWrapper>
-        <LeftIcon disabled={disabled}>{leftIcon}</LeftIcon>
-        <StyledInput
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          onChange={handleChange}
-          hasError={!!message && touched}
-          hasLeftIcon={!!leftIcon}
-          allowClear={allowClear}
-          disabled={disabled}
-          placeholder="Placeholder"
-          ref={inputRef}
-          {...rest}
-        />
-        {message && touched && <Message level={2}>{message}</Message>}
-        {touched && allowClear && <ClearIcon size={20} onClick={handleClear} />}
-      </InputWrapper>
-    </>
-  );
-};
+    const handleChange = (e: React.FormEvent<HTMLInputElement>) => {
+      if (onChange) onChange(e);
+      if (e.currentTarget.value.length > 0) {
+        setTouched(true);
+      } else {
+        setTouched(false);
+      }
+    };
+
+    return (
+      <Wrapper>
+        {label && (
+          <Label
+            disabled={disabled}
+            hasError={!!message && touched}
+            level={1}
+            focused={focused}
+          >
+            {label}
+          </Label>
+        )}
+        <InputWrapper>
+          {leftIcon && <LeftIcon disabled={disabled}>{leftIcon}</LeftIcon>}
+          <StyledInput
+            ref={combinedRef}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            onChange={handleChange}
+            hasError={!!message}
+            hasLeftIcon={!!leftIcon}
+            allowClear={allowClear}
+            disabled={disabled}
+            placeholder="Placeholder"
+            {...rest}
+          />
+          {message && <Message level={2}>{message}</Message>}
+          {allowClear && touched && (
+            <ClearIcon size={20} onClick={handleClear} />
+          )}
+        </InputWrapper>
+      </Wrapper>
+    );
+  },
+);
 
 export default Input;
