@@ -30,7 +30,8 @@ export const theme: DefaultTheme = {
     small: 1.4,
   },
   spacing: {
-    small: 0.8,
+    xsmall: 0.8,
+    small: 1.2,
     medium: 1.6,
     large: 2.4,
     xlarge: 3.2,

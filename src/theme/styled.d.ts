@@ -31,6 +31,7 @@ declare module 'styled-components' {
       small: number;
     };
     spacing: {
+      xsmall: number;
       small: number;
       medium: number;
       large: number;
