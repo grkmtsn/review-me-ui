@@ -1,17 +1,15 @@
-import styled from 'styled-components';
-import { X } from '@styled-icons/feather';
+import styled, { css } from 'styled-components';
 import Small from '../../Small';
 
 type InputProps = {
   hasLeftIcon: boolean;
   hasError: boolean;
-  allowClear: boolean;
 };
 
 type LabelProps = {
   disabled: boolean;
-  focused: boolean;
   hasError: boolean;
+  required: boolean;
 };
 
 type LeftIconProps = {
@@ -24,8 +22,7 @@ export const StyledInput = styled.input<InputProps>`
   font-size: ${(props) => props.theme.fontSizes.normal}rem;
   line-height: ${(props) => props.theme.spacing.large}rem;
   padding-top: ${(props) => props.theme.spacing.small}rem;
-  padding-right: ${(props) =>
-    props.allowClear ? 4.4 : props.theme.spacing.medium}rem;
+  padding-right: ${(props) => props.theme.spacing.medium}rem;
   padding-bottom: ${(props) => props.theme.spacing.small}rem;
   padding-left: ${(props) =>
     props.hasLeftIcon ? 4.4 : props.theme.spacing.medium}rem;
@@ -78,17 +75,31 @@ export const Message = styled(Small)`
   color: ${(props) => props.theme.colors.error};
 `;
 
-export const Label = styled(Small)<LabelProps>`
+export const Label = styled.label<LabelProps>`
+  display: inline-block;
   width: 100%;
   text-align: left;
   margin-bottom: 0.6rem;
   transition: color 0.3s ease;
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.6rem;
+  letter-spacing: 0.2px;
   ${(props) => {
     if (props.hasError) return `color: ${props.theme.colors.error};`;
-    if (props.focused) return `color: ${props.theme.colors.primary};`;
     if (props.disabled) return `color: ${props.theme.colors.black10};`;
     return `color: ${props.theme.colors.black60};`;
   }}
+
+  ${(props) =>
+    props.required &&
+    css`
+      &::after {
+        content: '*';
+        color: ${(props) => props.theme.colors.error};
+        margin-left: 2px;
+      }
+    `}
 `;
 
 export const LeftIcon = styled.div<LeftIconProps>`
@@ -100,15 +111,4 @@ export const LeftIcon = styled.div<LeftIconProps>`
     stroke: ${(props) =>
       props.disabled ? props.theme.colors.black10 : props.theme.colors.black40};
   }
-`;
-
-export const ClearIcon = styled(X)`
-  position: absolute;
-  top: 1.4rem;
-  right: 1.4rem;
-  cursor: pointer;
-  background-color: #f8f8f8;
-  border-radius: 50%;
-  padding: 2px;
-  stroke: ${(props) => props.theme.colors.black60};
 `;

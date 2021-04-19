@@ -13,8 +13,8 @@ export interface ButtonProps {
   shape?: 'rectangle' | 'circular';
   fluid?: boolean;
   type?: 'button' | 'submit' | 'reset';
-  disabled: boolean;
-  loading: boolean;
+  disabled?: boolean;
+  loading?: boolean;
   leftIcon?: React.ReactElement;
   rightIcon?: React.ReactElement;
   children: React.ReactNode;
