@@ -52,7 +52,9 @@
     "typescript": "^4.2.4",
     "yargs": "^16.2.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "react-hook-form": "^7.1.1"
+  },
   "peerDependencies": {
     "polished": "4.1.1",
     "react": "17.0.2",
