@@ -66,9 +66,9 @@ export const StyledButtonLoader = styled(Loader)`
 `;
 
 export const LeftIcon = styled.span`
-  margin-inline-end: ${(props) => props.theme.spacing.small}rem;
+  margin-inline-end: ${(props) => props.theme.spacing.xsmall}rem;
 `;
 
 export const RightIcon = styled.span`
-  margin-inline-start: ${(props) => props.theme.spacing.small}rem;
+  margin-inline-start: ${(props) => props.theme.spacing.xsmall}rem;
 `;
