@@ -1,6 +1,5 @@
 import React from 'react';
 import { RegisterOptions, FieldErrors } from 'react-hook-form';
-import Text from '../Text';
 
 import {
   Wrapper,
@@ -21,28 +20,9 @@ export interface InputProps {
   errors?: FieldErrors;
   register?: (e: string, o: RegisterOptions) => any;
   type?:
-    | 'button'
-    | 'checkbox'
-    | 'color'
-    | 'date'
-    | 'datetime-local'
-    | 'email'
-    | 'file'
     | 'hidden'
-    | 'image'
-    | 'month'
-    | 'number'
     | 'password'
-    | 'radio'
-    | 'range'
-    | 'reset'
-    | 'search'
-    | 'submit'
-    | 'tel'
     | 'text'
-    | 'time'
-    | 'url'
-    | 'week';
 }
 
 export type Ref = HTMLInputElement;

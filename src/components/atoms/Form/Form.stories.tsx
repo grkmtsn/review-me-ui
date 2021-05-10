@@ -1,7 +1,7 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
 import Form, { FormProps } from './Form';
-import { Col, Input, Row, Button } from '../..';
+import { Col, Input, Row, Button, Checkbox } from '../..';
 
 export default {
   title: 'Atoms/Form',
@@ -27,6 +27,9 @@ const Template: Story<FormProps> = (args) => (
           rules={{ required: { value: true, message: 'Zorunlu Alan' } }}
           type="password"
         />
+      </Col>
+      <Col xs={12}>
+        <Checkbox name="confirmed" text="Are you confirm?" />
       </Col>
       <Col xs={12}>
         <Button type="submit">Save</Button>

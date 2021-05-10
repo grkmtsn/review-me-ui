@@ -1,5 +1,6 @@
 import Avatar from './atoms/Avatar';
 import Button from './atoms/Button';
+import Checkbox from './atoms/Checkbox';
 import Col from './atoms/Col';
 import Container from './atoms/Container';
 import Form from './atoms/Form';
@@ -8,12 +9,13 @@ import Input from './atoms/Input';
 import Row from './atoms/Row';
 import Small from './atoms/Small';
 import Space from './atoms/Space';
-import SubTitle from './atoms/Subtitle';
+import SubTitle from './atoms/SubTitle';
 import Text from './atoms/Text';
 
 export {
   Avatar,
   Button,
+  Checkbox,
   Col,
   Container,
   Form,
