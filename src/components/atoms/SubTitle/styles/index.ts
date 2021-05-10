@@ -1,1 +1,1 @@
-export * from './SubTitle.style';
+export * from './Subtitle.style';

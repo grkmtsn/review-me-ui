@@ -9,7 +9,7 @@ import Input from './atoms/Input';
 import Row from './atoms/Row';
 import Small from './atoms/Small';
 import Space from './atoms/Space';
-import SubTitle from './atoms/SubTitle';
+import Subtitle from './atoms/Subtitle';
 import Text from './atoms/Text';
 
 export {
@@ -24,6 +24,6 @@ export {
   Row,
   Small,
   Space,
-  SubTitle,
+  Subtitle,
   Text,
 };

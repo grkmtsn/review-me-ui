@@ -1,21 +1,21 @@
 import React from 'react';
-import { StyledSubTitle } from './styles';
+import { StyledSubtitle } from './styles';
 
-export interface SubTitleProps {
+export interface SubtitleProps {
   level?: 1 | 2;
   invert?: boolean;
   children: React.ReactNode;
 }
 
-const SubTitle = ({
+const Subtitle = ({
   level = 1,
   invert = false,
   children,
   ...rest
-}: SubTitleProps): JSX.Element => (
-  <StyledSubTitle level={level} invert={invert} {...rest}>
+}: SubtitleProps): JSX.Element => (
+  <StyledSubtitle level={level} invert={invert} {...rest}>
     {children}
-  </StyledSubTitle>
+  </StyledSubtitle>
 );
 
-export default SubTitle;
+export default Subtitle;

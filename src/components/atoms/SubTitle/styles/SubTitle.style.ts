@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import { setLevel } from './level';
 
-type SubTitleProps = {
+type SubtitleProps = {
   level?: 1 | 2;
   invert?: boolean;
 };
 
-export const StyledSubTitle = styled.h3<SubTitleProps>`
+export const StyledSubtitle = styled.h3<SubtitleProps>`
   color: ${(props) =>
     props.invert ? props.theme.colors.white : props.theme.colors.black100};
   font-style: normal;
