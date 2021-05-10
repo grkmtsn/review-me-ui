@@ -10,6 +10,7 @@ import Small from './atoms/Small';
 import Space from './atoms/Space';
 import SubTitle from './atoms/Subtitle';
 import Text from './atoms/Text';
+import Checkbox from './atoms/Checkbox';
 
 export {
   Avatar,
@@ -24,4 +25,5 @@ export {
   Space,
   SubTitle,
   Text,
+  Checkbox,
 };
