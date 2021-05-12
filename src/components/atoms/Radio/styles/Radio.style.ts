@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import { Check } from '@styled-icons/feather';
 
 type LabelTextProps = {
   disabled?: boolean;
@@ -33,18 +32,24 @@ export const LabelText = styled.span<LabelTextProps>`
 
 export const MarkBox = styled.div`
   border: 2px solid ${(props) => props.theme.colors.black60};
+  background: transparent;
   box-sizing: border-box;
-  border-radius: 4px;
+  border-radius: 50%;
   width: 2rem;
   height: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.4s ease;
+  transition: border 0.4s ease;
 `;
 
-export const Mark = styled(Check)`
-  display: none;
+export const Mark = styled.span`
+  opacity: 0;
+  width: 1rem;
+  height: 1rem;
+  background-color: ${(props) => props.theme.colors.primary};
+  border-radius: 50%;
+  transition: opacity 0.4s ease;
 `;
 
 export const StyledInput = styled.input`
@@ -55,11 +60,10 @@ export const StyledInput = styled.input`
   width: 0;
 
   &:checked ~ ${MarkBox} {
-    border: none;
-    background-color: ${(props) => props.theme.colors.primary};
+    border: 2px solid ${(props) => props.theme.colors.primary};
 
     ${Mark} {
-      display: block;
+      opacity: 1;
     }
   }
 
@@ -67,12 +71,12 @@ export const StyledInput = styled.input`
     ${(props) =>
       props.disabled &&
       css`
-        border: none;
-        background-color: ${(props) => props.theme.colors.black40};
+        border: 2px solid ${(props) => props.theme.colors.black40};
         cursor: not-allowed;
         
         ${Mark} {
           display: block;
+          background-color: ${(props) => props.theme.colors.black40};
         }
       `}
   }
@@ -81,7 +85,7 @@ export const StyledInput = styled.input`
     ${(props) =>
       props.disabled &&
       css`
-        background-color: ${(props) => props.theme.colors.black10};
+        border: 2px solid ${(props) => props.theme.colors.black40};
         cursor: not-allowed;
       `}
   }
