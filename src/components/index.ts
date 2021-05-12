@@ -11,6 +11,7 @@ import Row from './atoms/Row';
 import Small from './atoms/Small';
 import Space from './atoms/Space';
 import SubTitle from './atoms/Subtitle';
+import Switch from './atoms/Switch';
 import Text from './atoms/Text';
 
 export {
@@ -27,5 +28,6 @@ export {
   Small,
   Space,
   SubTitle,
+  Switch,
   Text,
 };

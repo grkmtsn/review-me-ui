@@ -12,7 +12,7 @@ export interface SpaceProps {
     | number;
   align?: 'start' | 'end' | 'center' | 'baseline';
   direction?: 'horizontal' | 'vertical';
-  wrap: boolean;
+  wrap?: boolean;
   children: React.ReactNode;
 }
 

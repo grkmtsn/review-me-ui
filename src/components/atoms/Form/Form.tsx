@@ -1,12 +1,42 @@
 import React from 'react';
-import { useForm, UseFormReturn } from 'react-hook-form';
+import {
+  useForm,
+  UseFormReturn,
+  UseFormProps,
+  Control,
+  UseFormClearErrors,
+  UseFormGetValues,
+  UseFormReset,
+  UseFormSetError,
+  UseFormSetFocus,
+  UseFormSetValue,
+  UseFormTrigger,
+  UseFormUnregister,
+  UseFormWatch,
+} from 'react-hook-form';
 import { StyledForm } from './styles';
 
-export interface FormProps {
+export interface FormProps<TFormValues> {
   defaultValues?: object;
-  form?: UseFormReturn;
+  form?: UseFormReturn<TFormValues>;
   onSubmit: (data: any) => void;
   children: React.ReactElement | React.ReactElement[];
+}
+
+export interface CustomFormReturnProps<TFormValues> {
+  register: any;
+  formState: any;
+  handleSubmit: any;
+  watch?: UseFormWatch<TFormValues> | UseFormWatch<object>;
+  getValues?: UseFormGetValues<TFormValues> | UseFormGetValues<object>;
+  setError?: UseFormSetError<TFormValues> | UseFormSetError<object>;
+  clearErrors?: UseFormClearErrors<TFormValues> | UseFormClearErrors<object>;
+  setValue?: UseFormSetValue<TFormValues> | UseFormSetValue<object>;
+  trigger?: UseFormTrigger<TFormValues> | UseFormTrigger<object>;
+  reset?: UseFormReset<TFormValues> | UseFormReset<object>;
+  unregister?: UseFormUnregister<TFormValues> | UseFormUnregister<object>;
+  control?: Control<TFormValues> | Control<object>;
+  setFocus?: UseFormSetFocus<TFormValues> | UseFormSetFocus<object>;
 }
 
 export interface ChildProps {
@@ -14,15 +44,16 @@ export interface ChildProps {
   children: React.ReactElement | React.ReactElement[];
 }
 
-const Form = ({
+const Form = <TFormValues extends Record<string, any> = Record<string, any>>({
   defaultValues,
   onSubmit,
   form,
   children,
   ...rest
-}: FormProps): JSX.Element => {
-  const methods = form ? form : useForm({ defaultValues });
-  const { handleSubmit, formState } = methods;
+}: FormProps<TFormValues>): JSX.Element => {
+  const methods: CustomFormReturnProps<TFormValues> = form
+    ? form
+    : useForm({ defaultValues });
 
   function recursiveMap(
     children: React.ReactElement<ChildProps> | React.ReactElement<ChildProps>[],
@@ -39,7 +70,7 @@ const Form = ({
             ...{
               ...child.props,
               register: methods.register,
-              errors: formState.errors,
+              errors: methods.formState.errors,
               key: child.props.name,
             },
           });
@@ -57,7 +88,7 @@ const Form = ({
   }
 
   return (
-    <StyledForm onSubmit={handleSubmit(onSubmit)} {...rest}>
+    <StyledForm onSubmit={methods.handleSubmit(onSubmit)} {...rest}>
       {recursiveMap(children)}
     </StyledForm>
   );
