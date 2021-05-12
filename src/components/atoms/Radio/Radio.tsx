@@ -1,33 +1,33 @@
 import React, { InputHTMLAttributes } from 'react';
-
 import { StyledLabel, LabelText, StyledInput, MarkBox, Mark } from './styles';
 
-export interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface RadioProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
   text?: string;
   register?: (e: string) => any;
   disabled?: boolean;
 }
 
-const Checkbox = ({
+const Radio = ({
   name,
   text = '',
   disabled = false,
   register,
   ...rest
-}: CheckboxProps): JSX.Element => (
+}: RadioProps): JSX.Element => (
   <StyledLabel>
     {text && <LabelText disabled={disabled}>{text}</LabelText>}
     <StyledInput
-      type="checkbox"
+      type="radio"
       disabled={disabled}
+      name={name}
       {...(register && register(name))}
       {...rest}
     />
     <MarkBox>
-      <Mark size={16} color="#fff" />
+      <Mark />
     </MarkBox>
   </StyledLabel>
 );
 
-export default Checkbox;
+export default Radio;
