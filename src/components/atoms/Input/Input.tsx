@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { InputHTMLAttributes } from 'react';
 import { RegisterOptions, FieldErrors } from 'react-hook-form';
-import Text from '../Text';
 
 import {
   Wrapper,
@@ -10,7 +9,7 @@ import {
   Label,
   LeftIcon,
 } from './styles';
-export interface InputProps {
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string;
   label?: string;
   required?: boolean;
@@ -20,29 +19,7 @@ export interface InputProps {
   rules?: RegisterOptions;
   errors?: FieldErrors;
   register?: (e: string, o: RegisterOptions) => any;
-  type?:
-    | 'button'
-    | 'checkbox'
-    | 'color'
-    | 'date'
-    | 'datetime-local'
-    | 'email'
-    | 'file'
-    | 'hidden'
-    | 'image'
-    | 'month'
-    | 'number'
-    | 'password'
-    | 'radio'
-    | 'range'
-    | 'reset'
-    | 'search'
-    | 'submit'
-    | 'tel'
-    | 'text'
-    | 'time'
-    | 'url'
-    | 'week';
+  type?: 'email' | 'hidden' | 'password' | 'text';
 }
 
 export type Ref = HTMLInputElement;
