@@ -6,6 +6,7 @@ import Container from './atoms/Container';
 import Form from './atoms/Form';
 import Heading from './atoms/Heading';
 import Input from './atoms/Input';
+import Pill from './atoms/Pill';
 import Radio from './atoms/Radio';
 import Row from './atoms/Row';
 import Small from './atoms/Small';
@@ -23,6 +24,7 @@ export {
   Form,
   Heading,
   Input,
+  Pill,
   Radio,
   Row,
   Small,
