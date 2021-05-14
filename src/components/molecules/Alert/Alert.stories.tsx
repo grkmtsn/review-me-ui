@@ -8,7 +8,12 @@ export default {
   component: Alert,
 } as Meta;
 
-const Template: Story<AlertProps> = (args) => <Alert {...args} />;
+const Template: Story<AlertProps> = (args) => (
+  <div>
+    <Alert {...args} />
+    <div>Alert</div>
+  </div>
+);
 
 export const Default = Template.bind({});
 Default.args = {

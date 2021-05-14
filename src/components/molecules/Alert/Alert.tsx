@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, TransitionEvent } from 'react';
 import { Info, AlertCircle, CheckCircle } from '@styled-icons/feather';
 import {
   StyledAlert,
@@ -47,8 +47,15 @@ const Alert = ({
         break;
     }
   };
+  const handleCloseTransitionEnd = (e: TransitionEvent<HTMLDivElement>) => {
+    e.currentTarget.style.display = 'none';
+  };
   return (
-    <StyledAlert type={type} closed={closed}>
+    <StyledAlert
+      type={type}
+      closed={closed}
+      onTransitionEnd={handleCloseTransitionEnd}
+    >
       <BackgroundOverlay type={type} />
       {!!icon && (
         <StyledIconWrapper type={type}>{renderIcon()}</StyledIconWrapper>
