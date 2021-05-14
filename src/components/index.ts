@@ -15,7 +15,10 @@ import SubTitle from './atoms/Subtitle';
 import Switch from './atoms/Switch';
 import Text from './atoms/Text';
 
+import Alert from './molecules/Alert';
+
 export {
+  Alert,
   Avatar,
   Button,
   Checkbox,
