@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { cloneElement } from 'react';
+
 import {
   useForm,
   UseFormReturn,
-  UseFormProps,
   Control,
   UseFormClearErrors,
   UseFormGetValues,
@@ -15,6 +15,7 @@ import {
   UseFormWatch,
 } from 'react-hook-form';
 import { StyledForm } from './styles';
+import { map } from '../../../utils/eachChildren';
 
 export interface FormProps<TFormValues> {
   defaultValues?: object;
@@ -55,41 +56,23 @@ const Form = <TFormValues extends Record<string, any> = Record<string, any>>({
     ? form
     : useForm({ defaultValues });
 
-  function recursiveMap(
-    children: React.ReactElement<ChildProps> | React.ReactElement<ChildProps>[],
-  ) {
-    return React.Children.map(
-      children,
-      (child: React.ReactElement<ChildProps>) => {
-        if (!React.isValidElement(child)) {
-          return child;
-        }
-
-        if (child.props.name) {
-          return React.createElement(child.type, {
-            ...{
-              ...child.props,
-              register: methods.register,
-              errors: methods.formState.errors,
-              key: child.props.name,
-            },
-          });
-        }
-
-        if (child.props.children) {
-          child = React.cloneElement(child, {
-            children: recursiveMap(child.props.children),
-          });
-        }
-
-        return React.cloneElement(child, {});
-      },
-    );
-  }
+  const fn = (el) => {
+    let cloneEl = el;
+    if (!!el?.props?.name) {
+      cloneEl = cloneElement(el, {
+        ...el.props,
+        register: methods.register,
+        errors: methods.formState.errors,
+        key: el.props.name,
+        children: el.children,
+      });
+    }
+    return cloneEl;
+  };
 
   return (
     <StyledForm onSubmit={methods.handleSubmit(onSubmit)} {...rest}>
-      {recursiveMap(children)}
+      {map(children, fn)}
     </StyledForm>
   );
 };
