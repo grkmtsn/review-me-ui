@@ -1,5 +1,4 @@
 import { ReviewMeTheme } from '../src/theme';
-
 export const decorators = [
   (Story) => (
     <ReviewMeTheme>

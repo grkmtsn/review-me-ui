@@ -39,5 +39,8 @@ declare module 'styled-components' {
       xxlarge: number;
       xxxlarge: number;
     };
+    shadows: {
+      modal: string;
+    };
   }
 }
