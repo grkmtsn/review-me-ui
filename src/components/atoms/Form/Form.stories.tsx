@@ -1,7 +1,7 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
 import Form, { FormProps } from './Form';
-import useDisclosure from '../../../hooks/useDisclosure';
+import { useDisclosure, useConfirm } from '../../../hooks';
 
 import {
   Col,
@@ -29,12 +29,9 @@ export default {
   component: Form,
 } as Meta;
 
-const onSubmit = (data: FormValues) => {
-  console.log({ data });
-};
-
 const Template: Story<FormProps<FormValues>> = (args) => {
   const { isOpen, toggle } = useDisclosure();
+  const { confirm } = useConfirm();
   const form = Form.useForm({
     defaultValues: {
       username: 'Görkem',
@@ -44,6 +41,23 @@ const Template: Story<FormProps<FormValues>> = (args) => {
       theme: true,
     },
   });
+
+  const onSubmit = (data: FormValues) => {
+    confirm({
+      cancelable: true,
+      iconType: 'warning',
+      title: 'Are you sure?',
+      description:
+        "There's no way of avoiding declaring the interface and the runtime values, because TS's types disappear at runtime, so you're only left with the runtime values. You can't generate one from the other.",
+      okButtonProps: { children: 'Submit' },
+      onOk: () => {
+        alert(JSON.stringify(data));
+      },
+      onCancel: async () => {
+        console.log('close');
+      },
+    });
+  };
 
   const handleClick = () => {
     toggle();
