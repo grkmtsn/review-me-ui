@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ButtonHTMLAttributes } from 'react';
 
 import {
   StyledButton,
@@ -7,7 +7,7 @@ import {
   RightIcon,
 } from './styles';
 
-export interface ButtonProps {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   color?: 'primary' | 'warning' | 'success' | 'error';
   variant?: 'text' | 'outlined' | 'contained';
   shape?: 'rectangle' | 'circular';

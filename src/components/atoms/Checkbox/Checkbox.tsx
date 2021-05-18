@@ -25,7 +25,7 @@ const Checkbox = ({
       {...rest}
     />
     <MarkBox>
-      <Mark size={16} color="#fff" />
+      <Mark strokeWidth={2} size={16} color="#fff" />
     </MarkBox>
   </StyledLabel>
 );

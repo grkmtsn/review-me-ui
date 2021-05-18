@@ -1,6 +1,8 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
 import Form, { FormProps } from './Form';
+import useDisclosure from '../../../hooks/useDisclosure';
+
 import {
   Col,
   Input,
@@ -32,6 +34,7 @@ const onSubmit = (data: FormValues) => {
 };
 
 const Template: Story<FormProps<FormValues>> = (args) => {
+  const { isOpen, toggle } = useDisclosure();
   const form = Form.useForm({
     defaultValues: {
       username: 'Görkem',
@@ -39,9 +42,12 @@ const Template: Story<FormProps<FormValues>> = (args) => {
       confirm: true,
       gender: 'female',
       theme: true,
-      languageIds: ['2'],
     },
   });
+
+  const handleClick = () => {
+    toggle();
+  };
 
   return (
     <Form onSubmit={onSubmit} form={form}>
@@ -74,15 +80,22 @@ const Template: Story<FormProps<FormValues>> = (args) => {
           <Switch name="theme" text="Switch Theme" />
         </Col>
         <Col xs={12}>
-          <Space direction="vertical" align="start">
-            <Text>Select Languages:</Text>
-            <Space>
-              <Pill text="C#" value="1" name="languageIds" />
-              <Pill text="JavaScript" value="2" name="languageIds" />
-              <Pill text="SwiftUI" value="3" name="languageIds" />
-            </Space>
-          </Space>
+          <Button type="button" onClick={handleClick}>
+            Show Languages
+          </Button>
         </Col>
+        {isOpen && (
+          <Col xs={12}>
+            <Space direction="vertical" align="start">
+              <Text>Select Languages:</Text>
+              <Space>
+                <Pill text="C#" value="1" name="languageIds" />
+                <Pill text="JavaScript" value="2" name="languageIds" />
+                <Pill text="SwiftUI" value="3" name="languageIds" />
+              </Space>
+            </Space>
+          </Col>
+        )}
         <Col xs={12}>
           <Button type="submit">Save</Button>
         </Col>
