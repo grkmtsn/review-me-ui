@@ -38,4 +38,7 @@ export const theme: DefaultTheme = {
     xxlarge: 4.0,
     xxxlarge: 5.6,
   },
+  shadows: {
+    modal: '0px 12px 40px rgba(37, 40, 43, 0.32)',
+  },
 };

@@ -30,6 +30,7 @@
     "@storybook/addon-links": "^6.2.7",
     "@storybook/react": "^6.2.7",
     "@styled-icons/feather": "^10.18.0",
+    "@types/react-dom": "^17.0.5",
     "@types/styled-components": "^5.1.9",
     "@typescript-eslint/eslint-plugin": "^4.21.0",
     "@typescript-eslint/parser": "^4.21.0",
@@ -53,6 +54,7 @@
     "yargs": "^16.2.0"
   },
   "dependencies": {
+    "framer-motion": "^4.1.17",
     "react-hook-form": "^7.1.1",
     "react-itertools": "0.0.5"
   },
