@@ -1,4 +1,4 @@
-import React, { ButtonHTMLAttributes } from 'react';
+import React, { ButtonHTMLAttributes, forwardRef, RefObject } from 'react';
 
 import {
   StyledButton,
@@ -11,6 +11,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   color?: 'primary' | 'warning' | 'success' | 'error';
   variant?: 'text' | 'outlined' | 'contained';
   shape?: 'rectangle' | 'circular';
+  compact?: boolean;
   fluid?: boolean;
   type?: 'button' | 'submit' | 'reset';
   disabled?: boolean;
@@ -20,22 +21,27 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
 }
 
-const Button = ({
-  color = 'primary',
-  variant = 'contained',
-  shape = 'rectangle',
-  type = 'button',
-  fluid = false,
-  disabled = false,
-  loading = false,
-  leftIcon = null,
-  rightIcon = null,
-  children,
-  ...rest
-}: ButtonProps): JSX.Element => {
+const Button = (
+  {
+    color = 'primary',
+    variant = 'contained',
+    shape = 'rectangle',
+    compact = false,
+    type = 'button',
+    fluid = false,
+    disabled = false,
+    loading = false,
+    leftIcon = null,
+    rightIcon = null,
+    children,
+    ...rest
+  }: ButtonProps,
+  ref: RefObject<HTMLButtonElement>,
+): JSX.Element => {
   return (
     <div>
       <StyledButton
+        ref={ref}
         color={color}
         variant={variant}
         shape={shape}
@@ -43,12 +49,15 @@ const Button = ({
         fluid={fluid}
         disabled={disabled}
         loading={loading ? 1 : 0}
+        compact={compact}
         {...rest}
       >
-        {leftIcon && shape !== 'circular' && <LeftIcon>{leftIcon}</LeftIcon>}
-        {loading && <StyledButtonLoader size={20} />}
+        {leftIcon && shape !== 'circular' && !compact && (
+          <LeftIcon>{leftIcon}</LeftIcon>
+        )}
+        {loading && !compact && <StyledButtonLoader size={20} />}
         <span>{children}</span>
-        {rightIcon && shape !== 'circular' && (
+        {rightIcon && shape !== 'circular' && !compact && (
           <RightIcon>{rightIcon}</RightIcon>
         )}
       </StyledButton>
@@ -56,4 +65,4 @@ const Button = ({
   );
 };
 
-export default Button;
+export default forwardRef(Button);
