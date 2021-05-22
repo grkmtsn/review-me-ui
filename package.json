@@ -56,7 +56,8 @@
   "dependencies": {
     "framer-motion": "^4.1.17",
     "react-hook-form": "^7.1.1",
-    "react-itertools": "0.0.5"
+    "react-itertools": "0.0.5",
+    "react-laag": "^2.0.2"
   },
   "peerDependencies": {
     "polished": "4.1.1",

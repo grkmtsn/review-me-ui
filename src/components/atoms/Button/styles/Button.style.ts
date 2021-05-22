@@ -9,6 +9,7 @@ type ButtonProps = {
   color: 'primary' | 'warning' | 'success' | 'error';
   variant: 'text' | 'outlined' | 'contained';
   shape: 'rectangle' | 'circular';
+  compact: boolean;
   fluid: boolean;
   type: 'button' | 'submit' | 'reset';
   disabled: boolean;
@@ -49,6 +50,17 @@ export const StyledButton = styled.button<ButtonProps>`
   ${(props) => variant[props.variant]}
 
   ${(props) => setColor(props.color, props.variant)}
+  ${(props) =>
+    props.compact &&
+    css`
+      padding: 0.2rem 0.8rem !important;
+      font-weight: 500;
+      font-size: 1.2rem;
+      line-height: 1.6rem;
+      height: auto;
+      letter-spacing: 0.2px;
+      border-radius: 4px;
+    `};
 
   > span {
     ${(props) =>

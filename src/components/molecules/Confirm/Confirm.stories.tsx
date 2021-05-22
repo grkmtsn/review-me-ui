@@ -14,6 +14,7 @@ Default.args = {
   title: 'Heading',
   description: 'Lorem ipsum dolor sit amed',
   okButtonProps: {
-      children: 'Confirm'
-  }
+    children: 'Confirm',
+  },
+  close: () => console.log('closed'),
 };
