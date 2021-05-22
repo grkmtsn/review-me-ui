@@ -1,4 +1,5 @@
-import React, { useState, TransitionEvent } from 'react';
+import React, { useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import { Info, AlertCircle, CheckCircle } from '@styled-icons/feather';
 import {
   StyledAlert,
@@ -47,31 +48,29 @@ const Alert = ({
         break;
     }
   };
-  const handleCloseTransitionEnd = (e: TransitionEvent<HTMLDivElement>) => {
-    e.currentTarget.style.display = 'none';
-  };
+
   return (
-    <StyledAlert
-      type={type}
-      closed={closed}
-      onTransitionEnd={handleCloseTransitionEnd}
-    >
-      <BackgroundOverlay type={type} />
-      {!!icon && (
-        <StyledIconWrapper type={type}>{renderIcon()}</StyledIconWrapper>
+    <AnimatePresence>
+      {!closed && (
+        <StyledAlert type={type} exit={{ opacity: 0 }}>
+          <BackgroundOverlay type={type} />
+          {!!icon && (
+            <StyledIconWrapper type={type}>{renderIcon()}</StyledIconWrapper>
+          )}
+          <ContentWrapper>
+            <StyledMessage color={type} level={2}>
+              {message}
+            </StyledMessage>
+            {!!description && (
+              <StyledDescription color={type} level={2}>
+                {description}
+              </StyledDescription>
+            )}
+          </ContentWrapper>
+          {closable && <StyledCloseIcon size={20} onClick={handleClose} />}
+        </StyledAlert>
       )}
-      <ContentWrapper>
-        <StyledMessage color={type} level={2}>
-          {message}
-        </StyledMessage>
-        {!!description && (
-          <StyledDescription color={type} level={2}>
-            {description}
-          </StyledDescription>
-        )}
-      </ContentWrapper>
-      {closable && <StyledCloseIcon size={20} onClick={handleClose} />}
-    </StyledAlert>
+    </AnimatePresence>
   );
 };
 

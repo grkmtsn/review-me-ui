@@ -11,7 +11,6 @@ export default {
 const Template: Story<AlertProps> = (args) => (
   <div>
     <Alert {...args} />
-    <div>Alert</div>
   </div>
 );
 

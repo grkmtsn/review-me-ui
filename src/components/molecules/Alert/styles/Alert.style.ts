@@ -1,9 +1,9 @@
-import styled, { css, keyframes } from 'styled-components';
+import styled, { css } from 'styled-components';
+import { motion } from 'framer-motion';
 import { X } from '@styled-icons/feather';
 import { SubTitle, Text } from '../../..';
 
 type AlertProps = {
-  closed: boolean;
   type: 'primary' | 'success' | 'error' | 'warning' | 'white';
 };
 
@@ -15,7 +15,7 @@ type IconProps = {
   type: 'primary' | 'success' | 'error' | 'warning' | 'white';
 };
 
-export const StyledAlert = styled.div<AlertProps>`
+export const StyledAlert = styled(motion.div)<AlertProps>`
   display: flex;
   align-items: flex-start;
   padding-inline: ${(props) => props.theme.spacing.medium}rem;
@@ -25,16 +25,6 @@ export const StyledAlert = styled.div<AlertProps>`
   border-radius: 8px;
   overflow: hidden;
   transform-origin: top;
-  transition: all 0.4s ease;
-  transform: scaleY(1);
-  opacity: 1;
-
-  ${(props) =>
-    props.closed &&
-    css`
-      transform: scaleY(0);
-      opacity: 0;
-    `}
 `;
 
 export const BackgroundOverlay = styled.div<BackgroundOverlayProps>`
