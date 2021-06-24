@@ -16,6 +16,7 @@ import Switch from './atoms/Switch';
 import Text from './atoms/Text';
 
 import Alert from './molecules/Alert';
+import PopConfirm from './molecules/PopConfirm';
 
 export {
   Alert,
@@ -35,4 +36,5 @@ export {
   SubTitle,
   Switch,
   Text,
+  PopConfirm,
 };
