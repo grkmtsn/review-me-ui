@@ -1,7 +1,12 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
 import Tabs, { TabsProps } from './Tabs';
-import { Download, UploadCloud, Calendar, Briefcase } from '@styled-icons/feather';
+import {
+  Download,
+  UploadCloud,
+  Calendar,
+  Briefcase,
+} from '@styled-icons/feather';
 
 export default {
   title: 'Molecules/Tabs',
@@ -11,18 +16,26 @@ export default {
 const Template: Story<TabsProps> = (args) => (
   <div>
     <Tabs {...args}>
-      <Tabs.TabItem icon={<UploadCloud size={20} strokeWidth={2} />} index={1}>
+      <Tabs.Item icon={<UploadCloud size={20} strokeWidth={2} />} index={1}>
         Lorem ipsum 1
-      </Tabs.TabItem>
-      <Tabs.TabItem icon={<Download size={20} strokeWidth={2} />} index={2} label="Leads">
+      </Tabs.Item>
+      <Tabs.Item
+        icon={<Download size={20} strokeWidth={2} />}
+        index={2}
+        label="Leads"
+      >
         Lorem ipsum 2
-      </Tabs.TabItem>
-      <Tabs.TabItem icon={<Calendar size={20} strokeWidth={2} />} index={3} label="Users">
+      </Tabs.Item>
+      <Tabs.Item
+        icon={<Calendar size={20} strokeWidth={2} />}
+        index={3}
+        label="Users"
+      >
         Lorem ipsum 3
-      </Tabs.TabItem>
-      <Tabs.TabItem icon={<Briefcase size={20} strokeWidth={2} />} index={4}>
+      </Tabs.Item>
+      <Tabs.Item icon={<Briefcase size={20} strokeWidth={2} />} index={4}>
         Lorem ipsum 4
-      </Tabs.TabItem>
+      </Tabs.Item>
     </Tabs>
   </div>
 );
@@ -30,5 +43,5 @@ const Template: Story<TabsProps> = (args) => (
 export const Default = Template.bind({});
 Default.args = {
   defaultIndex: 2,
-  use: 'pane'
+  use: 'pane',
 };

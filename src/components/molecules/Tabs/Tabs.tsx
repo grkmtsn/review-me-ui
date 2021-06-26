@@ -3,7 +3,7 @@ import { AnimatePresence } from 'framer-motion';
 
 import { SubTitle, Space } from '../..';
 
-import { Surface, Item, TabContent, IconWrapper, Wrapper } from './styles';
+import { Surface, Item as TabItem, TabContent, IconWrapper, Wrapper } from './styles';
 
 export interface TabsProps {
   defaultIndex?: number;
@@ -12,7 +12,7 @@ export interface TabsProps {
   children: React.ReactNode[] | React.ReactNode;
 }
 
-export interface WrapperProps {
+export interface TabItemProps {
   icon?: React.ReactNode;
   index: number;
   label?: string;
@@ -56,7 +56,7 @@ const Tabs = ({
   };
 
   const items = React.Children.map(children, (child: any) =>
-    child.type.displayName === 'TabItem' ? child : null,
+    child.type.displayName === 'Item' ? child : null,
   );
 
   return (
@@ -65,7 +65,7 @@ const Tabs = ({
         {items
           .filter(Boolean)
           .map(({ props: { index, label, icon, disabled } }) => (
-            <Item
+            <TabItem
               isActive={bindIndex === index}
               key={`tab-btn-${index}`}
               onClick={() => changeTab(index)}
@@ -89,7 +89,7 @@ const Tabs = ({
               ) : (
                 <IconWrapper isActive={bindIndex == index}>{icon}</IconWrapper>
               )}
-            </Item>
+            </TabItem>
           ))}
       </Surface>
       <AnimatePresence>
@@ -109,7 +109,7 @@ const Tabs = ({
   );
 };
 
-const TabItem = ({ icon, label, index, disabled, use }: WrapperProps) => {
+const Item = ({ icon, label, index, disabled, use }: TabItemProps) => {
   return (
     <Wrapper
       icon={icon}
@@ -121,6 +121,6 @@ const TabItem = ({ icon, label, index, disabled, use }: WrapperProps) => {
   );
 };
 
-Tabs.TabItem = TabItem;
+Tabs.Item = Item;
 
 export default Tabs;
